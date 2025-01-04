@@ -1,0 +1,1258 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+    /* this will not increase the size of anything in webpage if you add, like if you add an image of 200 so it won't become 202 (2 for border) it will remain 200 */
+}
+
+html{
+    font-family: "Open Sans", sans-serif;
+}
+
+body{
+    background-color: #FCFBF9;
+}
+
+/*css++++++++++++++++ Scroll Progress Indicator ++++++++++++++++css*/
+.scroll-progress-indicator{
+    width: 0;
+    height: 0.125rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1a43f3;
+    z-index: 700;
+    box-shadow: 0px 3px 5px 0px rgba(109,136,251,0.6);
+}
+/*css@@@@@@@@@@@@@@@@ Scroll Progress Indicator @@@@@@@@@@@@@@@@css*/
+
+/*css++++++++++++++++ Top Navigation Bar ++++++++++++++++css*/
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    background-color: black;
+    width: 100%;
+    position: sticky;
+    top: 0.125rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    z-index: 400;
+    transition: transform 500ms ease, opacity 500ms ease, height 500ms ease; 
+    opacity: 1; 
+    height: 3.75rem;
+    transform: translateY(0);
+}
+
+.top-nav.hoverup{
+    transform: translateY(-200%); 
+    opacity: 0;
+    transition: transform 500ms ease, opacity 500ms ease, height 500ms ease;  
+    height: 0;
+    overflow: hidden; 
+}
+
+
+.top-nav .arrow-container{
+    cursor: pointer;
+    margin-right: auto;
+    padding-left: 0.938rem; /* 15px */
+    filter: invert(1);
+}
+.top-nav .arrow-container .arrow-icon{
+    display: none;
+}
+
+.item-view .top-nav .arrow-container .arrow-icon{
+    display: block;
+}
+
+.top-nav .arrow-icon img{
+    height: 1.875rem; /* 30px */
+    width: 1.875rem; /* 30x */
+}
+
+.top-nav .sidebar-icon{
+    display: none;
+}
+
+.top-nav .drop-icon{
+    color: white;
+    font-weight: bolder;
+    border-radius: 50%;
+    border: 0.063rem solid #D7D7D7;
+    padding: 0.5rem;
+    background-color: darkgray;
+    text-align: center;
+    opacity: 20%;
+    transition: all 500ms;
+    cursor: pointer;
+    user-select: none;
+}
+
+.top-nav .drop-icon:hover{
+    opacity: 1;
+}
+
+.top-nav .drop-icon.show{
+    opacity: 40%;
+    background-color: unset;
+}
+
+.top-nav .drop-icon.show:hover{
+    opacity: 1;
+}
+
+.top-nav .nav-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    /* flex-grow: inherit; */
+}
+
+.top-nav .nav-container .logo-icon{
+    cursor: pointer;
+    padding: 0.313rem 0.938rem 0rem 0rem;
+}
+
+.top-nav .nav-container .logo-icon img{
+    border-radius: 50px;
+    height: 3.125rem; /* 50px */
+    width: 3.125rem; /* 50px */
+}
+
+.top-nav .nav-container nav ul{
+    display: flex;
+    list-style: none;
+    position: relative;
+}
+
+.top-nav .nav-container nav ul li a{
+    color: white;
+    text-decoration: none;
+    margin: 0rem 1.25rem;
+}
+
+.top-nav .nav-container nav ul ul{
+    /* hide dropdowns by default */
+    display: none;
+    /* color of background */ 
+    background-color: black;
+    position: absolute;
+    padding:  0.625rem;
+    /* border for dropdowns */
+    border: 0.065rem solid #ddd;
+}
+
+.top-nav .nav-container nav ul ul li{
+    margin-top: 0.625rem;
+    font-size: 0.875rem;
+}
+
+.top-nav .nav-container nav ul li a:hover{
+    color: #5488E6;
+}
+
+.top-nav .nav-container li:hover >ul{
+    /* show dropdown on hover */
+    /* This will show dropdown menu */
+    display: block;
+}
+
+.top-nav .screen-mode{
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.top-nav .screen-mode img{
+    height: 1.875rem;
+    width: 1.875rem;
+}
+
+.top-nav .search-icon{
+    cursor: pointer;
+    margin-left: auto;
+    padding-right: 0.938rem;
+    filter: invert(1);
+}
+
+.top-nav .search-icon img{
+    height: 1.875rem; /* 30px */
+    width: 1.875rem; /* 30x */
+}
+
+/*css++++++++++++++++ search-container ++++++++++++++++css*/
+.top-nav .search-container{
+    position: absolute;
+    right: 0rem;
+    top: 2.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: 400ms;
+    z-index: 600;
+}
+
+.top-nav .search-container.active{
+    top: 2.5rem;
+    opacity: 1;
+    pointer-events: auto; 
+}
+
+.top-nav .search-container .blog-search{
+    display: flex;
+    width: 100%;
+}
+
+.top-nav .search-container .blog-search input[type="search"]{
+    padding: 0.5rem;
+    box-shadow: 0rem 0.25rem 0.5rem -0.125rem rgba(0, 0, 0, 0.2);
+    font-size: 0.875rem;
+    width: 90%;
+    margin-right: 0.313rem;
+    margin-left: 0.313rem;
+    border-radius: 10px;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    border: none;
+}
+
+.top-nav .search-container .blog-search input[type="search"]:focus{
+    outline: none;
+}
+
+.top-nav .search-container .blog-search input[type="submit"]{
+    padding: 0.5rem 0rem;
+    background-color: #6d88fb;
+    border: 0.063rem solid #5488E6;
+    box-shadow: 0rem 0.25rem 0.5rem -0.125rem rgba(0, 0, 0, 0.4);
+    font-weight: bold;
+    font-size: 1rem;
+    width: 10%;
+    margin-right: 0.313rem;
+    border-radius: 10px;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+.top-nav .search-container .blog-search input[type="submit"]:hover{
+    background-color: #365CFF;
+}
+
+
+.top-nav .search-container .search-results{
+    background-color: white;
+    padding: 0.5rem 0.125rem 1rem 0.125rem;
+    border-radius: 10px;
+    margin: 0.3rem 0.313rem 0rem 0.313rem;
+    box-shadow: 0rem 0.25rem 0.5rem -0.125rem rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: all 500ms;
+}
+
+.top-nav .search-container .search-results.visible{
+    opacity: 95%;
+    pointer-events: auto;
+}
+
+.top-nav .search-container .search-results .search-title{
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-left: 0.313rem;
+    user-select: none;
+}
+
+.top-nav .search-container .search-results .results-container{
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+.top-nav .search-container .search-results ul{
+    padding: 0;
+    margin-left: 0.313rem;
+}
+
+.top-nav .search-container .search-results ul a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: black;
+    padding: 0.75rem;
+    display: inline-block;
+    transition: all 400ms ease;
+    width: 100%;
+}
+
+.top-nav .search-container .search-results ul a:hover{
+    background-color: #D7D7D7;
+    border-radius: 10px;
+}
+
+/*css@@@@@@@@@@@@@@@@ search-container @@@@@@@@@@@@@@@@css*/
+
+/*css@@@@@@@@@@@@@@@@ Top Navigation Bar @@@@@@@@@@@@@@@@css*/
+
+/*css++++++++++++++++ Hero Section ++++++++++++++++css*/
+.header-wrapper{
+    margin: 0 auto;
+    height: auto;
+    background: #FCFBF9;
+    /* #F0F0EE */
+    /* display: flex; */
+    justify-content: center; /* center horizontally */
+}
+
+.header-wrapper .hero{
+    display: flex;
+}
+
+.header-wrapper .hero .hero-left{
+    flex: 1;
+    align-self: center; /* keep the content in the center of its display section */
+    align-items: center; /* center all the content horizonatlly */
+    justify-content: center; /*center the button horizontally */
+    text-align: center; /* ensure text inside the button is centered */
+}
+
+.header-wrapper .hero .hero-right{
+    flex: 2;
+}
+
+.header-wrapper .hero h1.main-heading{
+    font-family: "Caveat", cursive;
+    color: #365cff;
+    font-size: 3rem;
+}
+
+.header-wrapper .hero p.main-subheading{
+    color: #232323;    
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+a.btn{
+    background-color: #D7D7D7;
+    color: black;
+    text-decoration: none;
+    padding: 0.313rem 1.375rem;
+    font-size: 0.8rem;
+}
+
+.header-wrapper .hero .hero-right img{
+    width: 100%;
+    height: auto;
+}
+/*css@@@@@@@@@@@@@@@@ Hero Section @@@@@@@@@@@@@@@@css*/
+
+/*css++++++++++++++++ Blog Section ++++++++++++++++css*/
+.wrapper{
+    max-width: 80rem;
+    margin-inline: auto;
+    /* margin-top: 1rem; */
+}
+
+/*css++++++++++++++++ Blog Sidebar Section ++++++++++++++++css*/
+.blog-sidebar-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.blog-sidebar-container .sidebar{
+    /* margin-top: 2.5rem; */
+    width: 20%;
+    border-radius: 10px;
+    box-shadow: 0rem 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    margin-right: 0.25rem;
+    transform: translateX(0);
+    transition: transform 0.3s ease, width 0.3s ease; 
+}
+
+.blog-sidebar-container .sidebar.toggleon{
+    transform: translateX(-100%);
+    width: 0%;
+}
+
+/*css@@@@@@@@@@@@@@@@ Blog Sidebar Section @@@@@@@@@@@@@@@@css*/
+
+.blog-sidebar-container .posts-wrapper{
+    width: 80%;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0rem 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    transition: width 0.3s ease; 
+}
+
+.blog-sidebar-container .posts-wrapper.widthfull{
+    width: 100%;
+}
+
+.wrapper p {
+    /* line-height: 2px; */
+    margin-bottom: 1.25rem;
+}
+
+h2{
+    font-size: 1.5rem;
+    margin-bottom: 2.25rem;
+    position: relative;
+}
+
+h2::after{
+    content: "";
+    position: absolute;
+    height: 0.188rem;
+    width: 4.25rem; /* 5.25rem */
+    background-color: #365CFF;
+    bottom: -0.5rem;
+    left: 0;
+}
+
+.posts-wrapper{
+    padding-top: 2.5rem;
+    width: 80%;
+}
+
+.blogpost-card .thumbnail-image{
+    position: relative;
+}
+
+.blogpost-card .thumbnail-image > img{ /* we are writing like this because we have two image inside blogposts-card but we need to target only one which is right iside the thumbnail */
+    width: 100%;
+    height: 16.25rem;
+    object-fit: cover;
+}
+
+.blogpost-card .thumbnail-image .post-labels{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #FCFBF9;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 0 0.25rem 0.5rem -0.188rem rgba(0, 0, 0, 0.2);
+}
+
+.blogpost-card .thumbnail-image .post-labels {
+    align-items: center; /* vertical */
+    align-self: center; /* horizontal */
+}
+
+.blogpost-card .thumbnail-image .post-labels img{
+    margin-right: 0.313rem;
+}
+
+.blogpost-card .thumbnail-image .post-labels a{
+    text-decoration: none;
+    text-align: center;
+    color: #232323;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+    
+.blogpost-card{
+    padding-bottom: 2.5rem; /*4.375*/
+    border-bottom: 0.063rem solid #bbafaf;
+    padding-top: 0.313rem;
+}
+
+.blogpost-card:nth-of-typ(1){
+    /* this will select the first blog post */
+    padding-top: 1rem;
+}
+
+.blogpost-card h3{
+    font-family: "Kanit", sans-serif;
+    font-size: 2.25rem;
+    margin: 1.25rem 0rem 0.75rem 0rem;
+}
+
+.blogpost-card .post-meta{
+    font-family: "Caveat Brush", cursive;
+    background: #6d88fb;
+    color: #fcfcfc;
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    margin-left: 0.625rem; 
+    margin-bottom: 0.625rem;
+}
+
+/*css++++++++++++++++ Read More ++++++++++++++++css*/
+.post-body{
+    height: 11.25rem;
+    overflow: hidden; /* this will hide the text or items going outside the post-body */
+    position: relative;
+}
+
+.post-body::after{
+    content: "";
+    height: 6.25rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0; /* this will put it on the bottom of post body || if you say top and put 0 then it would be on top*/
+    /* after element are mostly put into the after */
+    background: rgb(252,251,249);
+    background: linear-gradient(0deg, rgba(252,251,249,1) 17%, rgba(252,251,249,0.9831582291119573) 37%, rgba(252,251,249,0.8318977249102766) 67%, rgba(252,251,249,0) 87%);
+}
+
+.post-body .read-more-container{
+    position: absolute;
+    bottom: 1rem;
+    z-index: 100; /*this will always be seen because of z-index */
+    left: 0;
+    right: 0; 
+    text-align: center;
+    /* left: 0 and right: 0 will cause the read-more-container to be at center this is a must used again because its easy and effective */
+}
+
+.post-body .read-more-container .read-more{
+    text-decoration: none;
+    font-family: "Caveat Brush", cursive;
+    color: #6d88fb;
+    /* color: #71797E; */
+    font-size: 1.5rem;
+    /* font-weight: bold; */
+    /* text-transform: uppercase; */
+    
+}
+/*css@@@@@@@@@@@@@@@@ Read More @@@@@@@@@@@@@@@@css*/
+
+/*css@@@@@@@@@@@@@@@@ Blog Section @@@@@@@@@@@@@@@@css*/
+
+/*css++++++++++++++++ Popular or Most Viewed Posts ++++++++++++++++css*/
+    .most-viewed-posts-container{
+        box-shadow: 0rem 0.25rem 0.813rem -0.188rem rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+        margin: 1rem 0rem 0.625rem 0rem;
+    }
+
+    .most-viewed-posts-container .popular-posts{
+        display: flex;
+    }
+
+    .popular-post .thumbnail img{
+        width: 100%;
+        height: 10rem;
+        object-fit: cover;
+    }
+
+    .popular-post{
+        margin: 0rem 0.5rem;
+    }
+
+    .popular-post h3.title{
+        font-family: "Kanit", sans-serif;
+        font-size: 1.625rem;
+        margin-top: 0.375rem;
+        text-align: center;
+
+    }
+/*css@@@@@@@@@@@@@@@@ Popular or Most Viewed Posts @@@@@@@@@@@@@@@@css*/
+
+/*css++++++++++++++++ Comment or Contact ++++++++++++++++css*/
+    .contact-container{
+        margin-top: 3.125rem;
+        box-shadow: 0rem 0.25rem 0.813rem -0.188rem rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+    }
+
+    .contact-container form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-container form input[type="text"]{
+        padding: 0.5rem 1.5rem;
+        font-family: "Kanit", sans-serif;
+        font-size: 1rem;
+        margin-bottom: 0.625rem;
+    }
+
+    .contact-container form textarea{
+        padding: 0.5rem 1.5rem;
+        font-family: "Open Sans", sans-serif; 
+        margin-bottom: 0.625rem;
+        font-size: 0.875rem;
+    }
+
+    .contact-container form input[type="submit"]{
+        background: #6d88fb;
+        width: 9.375rem;
+        padding: 0.5rem 1.5rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: "Open Sans", sans-serif;
+    }
+/*css@@@@@@@@@@@@@@@@ Comment or Contact @@@@@@@@@@@@@@@@css*/
+
+/*css++++++++++++++++ Footer ++++++++++++++++css*/
+    footer{
+        background-color: black;
+        color: white;
+        padding: 2.25rem;
+        width: 100%;
+    }
+
+    footer ul{
+        list-style: none;
+        margin-top: 0.625rem;
+    }
+
+    footer ul li{
+        margin: 0.75rem 0.5rem;
+    }
+
+    footer a{
+        color: lightgrey;
+        text-decoration: none;
+    }
+
+    footer a:hover{
+        text-decoration: underline;
+    }
+
+    footer .footer-container{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    footer .footer-left{
+        align-self: center;
+        align-items: center;
+    }
+
+    footer .footer-left img{
+        border-radius: 50px;
+        height: 3.125rem; /* 50px */
+        width: 3.125rem; /* 50px */
+    }
+
+    footer .footer-center{
+        align-items: center;
+        align-self: center;
+    }
+
+    footer .footer-right{
+        text-align: center;
+    }
+
+    footer .social-icons{
+        margin-top: 1.25rem;
+        padding: 0.625rem;
+        /* max-width: 260px; */
+    }
+
+    footer .social-icons img{
+        margin: 0rem 1.25rem;
+        filter: invert(1);
+        border-radius: 10px;
+        height: 3.125rem; /* 50px */
+        width: 3.125rem; /* 50px */
+    }
+
+    footer .social-icons a{
+        text-decoration: none;
+    }
+
+    footer .footer-text{
+        padding-top: 1.875rem;
+        text-align: center;
+        margin-bottom: -0.938rem;
+        color: white;
+        font-size: 0.875rem;
+    }
+
+/*css@@@@@@@@@@@@@@@@ Footer @@@@@@@@@@@@@@@@css*/
+
+/*css++++++++++++++++ Scroll to Top ++++++++++++++++css*/
+
+.custom-btn-tgl{
+    display: block;
+    transition: all 500ms;
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+    opacity: 0;
+}
+
+.custom-btn-tgl.active{
+    height: 0;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.custom-btn-tgl .custom-btn-container{
+    height: 48px;
+    width: 48px;
+    background: lightgrey;
+    border-radius: 50px;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 20%; /* 20% */
+}
+
+.custom-btn-tgl .custom-btn-container:hover{
+    background: darkgrey;
+    opacity: 100%;
+}
+
+.custom-btn-tgl .custom-btn-container.active{
+    background: darkgrey;
+    opacity: 100%;
+}
+
+.custom-btn-tgl .custom-btn-container .btn{
+    color: black;
+    user-select: none;
+    font-weight: bolder;
+    position: fixed;
+    transition: all 500ms;
+}
+
+.custom-btn-tgl .custom-btn-container.active .btn{
+    transform: rotateY(180deg)
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options{
+    position: relative;
+    top: -118%;
+    left: 250%;
+    display: flex;
+    background: darkgrey;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1rem 1rem 1rem 0rem; 
+    box-shadow: 0rem 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    opacity: 0%;
+    transform: translateX(-50px) translateY(50px);
+    pointer-events: none;
+    transition: all 500ms;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options.show{  /*active state put over here */
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+    pointer-events: auto;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .sidebar-toggle-byhm{
+    margin-right: 0.5rem;
+    margin-left: 0.25rem;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .sidebar-toggle-byhm img{
+    filter: invert(1);
+    height: 35px;
+    transition: all 500ms;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .sidebar-toggle-byhm.pressed img{
+    transform: rotateY(180deg);
+}
+
+
+.custom-btn-tgl .custom-btn-container .btn-options .sidebar-toggle-byhm:hover{
+    transition: all 500ms;
+    background-color: #CCCCCC;
+    border-radius: 1rem;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .sidebar-toggle-byhm:hover img{
+    filter: brightness(0) saturate(100%) invert(25%) sepia(59%) saturate(5258%) hue-rotate(230deg) brightness(111%) contrast(101%);
+}
+
+
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    font-family: "Caveat Brush", cursive;
+    font-size: 1.25rem;
+    color: #525252;
+    cursor: default;
+    user-select: none;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .light-color,
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .mild-color,
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .strong-color{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 0.063rem solid #A3A3A3;
+    cursor: pointer;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .light-color{
+    background-color: white;  
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .mild-color{
+    background-color: bisque;
+    margin: 0rem 0.5rem 0rem 0.5rem;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .strong-color{
+    background-color: gold;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .light-color:hover,
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .mild-color:hover,
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change .strong-color:hover{
+    border: 0.063rem solid black;
+    transition: all 500ms;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .navigation-toggle{
+    margin-left: 0.5rem;
+    margin-right: 0.25rem;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .navigation-toggle img{
+    filter: invert(1);
+    height: 35px;
+    transform: rotate(90deg);
+    transition: all 500ms;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .navigation-toggle.pressed img{
+    transform: rotate(270deg);
+}
+
+
+.custom-btn-tgl .custom-btn-container .btn-options .navigation-toggle:hover{
+    transition: all 500ms;
+    background-color: #CCCCCC;
+    border-radius: 1rem;
+}
+
+.custom-btn-tgl .custom-btn-container .btn-options .navigation-toggle:hover img{
+    filter: brightness(0) saturate(100%) invert(25%) sepia(59%) saturate(5258%) hue-rotate(230deg) brightness(111%) contrast(101%);
+}
+
+
+/*css@@@@@@@@@@@@@@@@ Scroll to Top @@@@@@@@@@@@@@@@css*/
+
+/*css++++++++++++++++ Hidden Items shows only in mobile ++++++++++++++++css*/
+.mobile-menu-icon,
+.mobile-menu-container{
+    display: none;
+}
+
+/* Media queries are break points which again to your website so it can set break points for certain width of browser window */
+/*css++++++++++++++++ Media Queries ++++++++++++++++css*/
+/* @media(max-width: 72rem) and (min-width: 47.938){
+    .wrapper{
+        width: 100%;
+    }
+} */
+
+@media(max-width: 48rem){
+    /* this will check whether the website widht is less than 48rem or 768px and if not then any style applied over here will not be applicable */
+   
+   /*css++++++++++++++++ Top Navigation Bar 4 Mobile ++++++++++++++++css*/
+   .top-nav nav,
+   .top-nav .screen-mode,
+   .top-nav .drop-icon,
+   .custom-btn-tgl .custom-btn-container .btn-options .sidebar-toggle-byhm{
+    display: none;
+   }
+
+.custom-btn-tgl .custom-btn-container .btn-options .page-color-change{
+    margin-left: 0.25rem;
+}
+
+   .top-nav{
+    justify-content: center;
+    width: 100%;
+    height: 4rem;
+   }
+
+   .top-nav .sidebar-icon{
+    display: block;
+    filter: invert(1);
+    position: absolute;
+    left: 25%;
+   }
+
+   .top-nav .sidebar-icon img{
+    height: 1.875rem;
+    width: 1.875rem;
+   }
+
+   .top-nav .nav-container{
+    flex: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+   }
+
+   .top-nav .nav-container .logo-icon{
+    padding: 0.313rem 0rem 0rem 0rem;
+   }
+
+   .top-nav .search-icon{
+    position: absolute;
+    right: 25%;
+    flex: 0;
+    padding: 0;
+   }
+
+    .top-nav .search-container .blog-search input[type="submit"]{
+    font-size: 2vw;
+    }
+
+   .top-nav .mobile-menu-icon{
+    display: block;
+    filter: invert(1);
+    cursor: pointer;
+    margin-left: auto;
+    padding-right: 0.938rem;
+   } 
+
+   .top-nav .mobile-menu-icon img{
+    height: 1.875rem;
+    width: 1.875rem;
+   }
+
+   .top-nav .mobile-menu-container{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: black;
+    height: 100vh;
+    z-index: 200;
+    width: 50%;
+    top: 4rem;
+    right: 0;
+    align-items: center;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: 500ms cubic-bezier(0.03, 0.95, 0.11, 1.09);
+   }
+   
+   .top-nav .mobile-menu-container.active{
+    opacity: 1;
+    pointer-events: auto;
+    top: 4rem;
+   }
+
+    /* Hide scrollbar for WebKit-based browsers */
+    .top-nav .mobile-menu-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar */
+    }
+
+    /* Hide scrollbar for Firefox */
+    .top-nav .mobile-menu-container {
+        scrollbar-width: none; /* Hide scrollbar */
+    }
+
+    /* Hide scrollbar for IE and older Edge */
+    .top-nav .mobile-menu-container {
+        -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    }
+
+    .top-nav .mobile-menu-container .mobile-drop-icon{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        color: white;
+        font-weight: bolder;
+        border-radius: 50%;
+        border: 0.063rem solid #D7D7D7;
+        padding: 0.8rem;
+        background-color: darkgray;
+        text-align: center;
+        opacity: 20%;
+        transition: all 500ms;
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    .top-nav .mobile-menu-container .mobile-drop-icon:hover{
+        opacity: 1;
+    }
+    
+    .top-nav .mobile-menu-container .mobile-drop-icon.show{
+        opacity: 40%;
+        background-color: unset;
+    }
+    
+    .top-nav .mobile-menu-container .mobile-drop-icon.show:hover{
+        opacity: 1;
+    }    
+
+   .top-nav .mobile-menu-container .mobile-screen-mode{
+    filter: invert(1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+   }
+
+   .top-nav .mobile-menu-container .mobile-screen-mode:hover{
+    filter: brightness(0) saturate(100%) invert(32%) sepia(45%) saturate(5861%) hue-rotate(224deg) brightness(100%) contrast(102%);
+   }
+
+   .top-nav .mobile-menu-container .mobile-screen-mode img{
+    height: 3rem;
+    width: 3rem;
+   }
+
+   .top-nav .mobile-menu-container .mobile-menu-items ul{
+    list-style: none;
+    text-align: center;
+    z-index: 500;
+   }
+
+   .top-nav .mobile-menu-container .mobile-menu-items ul li{
+    margin: 4rem 0rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+   }
+
+   .top-nav .mobile-menu-container .mobile-menu-items ul li a{
+    color: white;
+    text-decoration: none;
+   }
+
+   .top-nav .mobile-menu-container .mobile-menu-items ul ul{
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    background-color: black;
+    border: 0.065rem solid #ddd;
+    width: 100%; /* Set a width for the submenu */
+    z-index: 300; /* Ensure the submenu appears above other content */
+    }
+
+   .top-nav .mobile-menu-container .mobile-menu-items ul ul li{
+    /* margin-right: 0.625rem; */
+    font-size: 1.25rem;
+    margin: 0.85rem 0rem;
+   }
+
+   .top-nav .mobile-menu-container .mobile-menu-items ul li a:hover{
+    color: #5488E6;
+   }
+
+    .top-nav .mobile-menu-container .mobile-menu-items li:hover >ul{
+    display: flex;
+    flex-direction: column;       
+    }
+
+
+   
+   /*css@@@@@@@@@@@@@@@@ Top Navigation Bar 4 Mobile @@@@@@@@@@@@@@@@css*/
+
+   /*css++++++++++++++++ Hero Section 4 Mobile ++++++++++++++++css*/
+   .header-wrapper{
+    width: 100%;
+    overflow: hidden; 
+    height: auto;
+   }
+
+   .header-wrapper .hero{
+    flex-direction: column;
+    /* height: 100%; */
+   }
+
+   .header-wrapper .hero .hero-right{
+    width: 100%;
+    order: -1;
+   }
+
+   .header-wrapper .hero .hero-right img{
+    width: 100%;
+    object-fit: cover;
+   }
+
+   .header-wrapper .hero .hero-left{
+    display: flex;
+    order: 1;
+    flex-direction: column;
+    width: 100%;  
+   }
+   /*css@@@@@@@@@@@@@@@@ Hero Section 4 Mobile @@@@@@@@@@@@@@@@css*/
+
+   /*css++++++++++++++++ Blog Section 4 Mobile ++++++++++++++++css*/
+   .wrapper{
+    width: 100%;
+    padding: 0rem 1rem;
+    margin-top: -0.5rem;
+   }
+
+   /*css++++++++++++++++ Blog Sidebar 4 Mobile ++++++++++++++++css*/
+
+   .blog-sidebar-container .sidebar{
+    position: fixed; 
+    top: 4rem; 
+    left: 0;
+    height: 100vh;
+    z-index: 200;
+    background-color: black;
+    box-shadow: none; 
+    overflow-y: auto; 
+    border-radius: unset;
+    opacity: 0;
+    pointer-events: none;
+    transition: 500ms cubic-bezier(0.03, 0.95, 0.11, 1.09);
+    }
+
+    .blog-sidebar-container .sidebar.active{
+    opacity: 1;
+    pointer-events: auto;
+    top: 4rem;
+    display: block;
+    transform: unset;
+    width: 50%; 
+    }
+
+    /* Hide scrollbar for WebKit-based browsers */
+    .blog-sidebar-container .sidebar::-webkit-scrollbar {
+        display: none; /* Hide scrollbar */
+    }
+
+    /* Hide scrollbar for Firefox */
+    .blog-sidebar-container .sidebar {
+        scrollbar-width: none; /* Hide scrollbar */
+    }
+
+    /* Hide scrollbar for IE and older Edge */
+    .blog-sidebar-container .sidebar {
+        -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    }
+
+    /*css@@@@@@@@@@@@@@@@ Blog Sidebar 4 Mobile @@@@@@@@@@@@@@@@css*/
+
+
+   .blog-sidebar-container .posts-wrapper{
+    width: 100%;
+   }
+
+   h2{
+    font-size: 1.5rem;
+    margin-bottom: 1.75rem;
+   }
+
+   .posts-wrapper .blogpost-card{
+    padding-bottom: 1.5rem;
+   }
+
+   .posts-wrapper .blogpost-card .thumbnail-image > img{
+    height: 13.75rem;
+   }
+
+   .blogpost-card h3{
+    font-size: 1.5rem;
+    margin: 0.5rem 0rem 0.25rem 0rem;
+   }
+
+   .blogpost-card .thumbnail-image .post-labels{
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.25rem;
+   }
+
+   /* .blogpost-card .thumbnail-image .post-labels .labels a{
+    font-size: 0.65rem;
+   }  */
+
+   .blogpost-card .post-meta{
+    font-size: 1rem;
+   }
+
+   .blogpost-card .post-body{
+    font-size: 0.8rem;
+   }
+
+   /*css++++++++++++++++ Read More 4 Mobile ++++++++++++++++css*/
+   .post-body .read-more-container .read-more{
+    font-size: 1.125rem;
+   }
+   /*css@@@@@@@@@@@@@@@@ Read More 4 Mobile @@@@@@@@@@@@@@@@css*/
+
+   /*css@@@@@@@@@@@@@@@@ Blog Section 4 Mobile @@@@@@@@@@@@@@@@css*/
+
+   /*css++++++++++++++++ Popular Posts 4 Mobile ++++++++++++++++css*/
+   .most-viewed-posts-container{
+    box-shadow: unset;
+    padding: 1rem;
+   }
+
+   .most-viewed-posts-container .popular-posts{
+    flex-direction: column;
+   }
+
+   .popular-posts .popular-post{
+    margin: 1rem 0rem;
+   }
+
+   .popular-post h3.title{
+    font-size: 1.25rem;
+    margin-top: 0.188rem;
+   }
+   /*css@@@@@@@@@@@@@@@@ Popular Posts 4 Mobile @@@@@@@@@@@@@@@@css*/
+
+   /*css++++++++++++++++ Comment or Contact 4 Mobile ++++++++++++++++css*/
+   .contact-container{
+    box-shadow: unset;
+    padding: 1rem;
+   }
+
+   .contact-container form textarea{
+    height: 8rem;
+   }
+   /*css@@@@@@@@@@@@@@@@ Comment or Contact 4 Mobile @@@@@@@@@@@@@@@@css*/
+
+   /*css++++++++++++++++ Footer 4 Mobile ++++++++++++++++css*/
+   footer .footer-container{
+    flex-direction: column;
+   }
+
+   footer .footer-center{
+    text-align: center;
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+   }
+
+   footer .social-icons{
+    margin-top: 0rem;
+   }
+
+   footer .social-icons img{
+    margin: 0rem 0.5rem;
+   }
+   /*css@@@@@@@@@@@@@@@@ Footer 4 Mobile @@@@@@@@@@@@@@@@css*/
+} 
+/*css@@@@@@@@@@@@@@@@ Media Queries @@@@@@@@@@@@@@@@css*/
+
+/*css@@@@@@@@@@@@@@@@ Hidden Items shows only in mobile @@@@@@@@@@@@@@@@css*/
+
+
